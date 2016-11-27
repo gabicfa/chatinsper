@@ -1,16 +1,12 @@
- <!DOCTYPE html>
- <html>
- <head>
- 	<title>Chat</title>
- </head>
-	 <body>
-	 	<div class="chat">
-	 		<input type="text" class="nickname" placeholder="Escolha um Nickname">
-
-	 		<div class="messages"></div>
-	 		<textarea></textarea>
-
-	 	</div>
-	 	
-	 </body>
- </html>
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+  </head>
+  <body>
+    <ul id="nickname"></ul>
+    <form action="/sala">
+      <input id="nn" autocomplete="off" placeholder="Escolha um Nickname"/>
+      <button>Send</button>
+    </form>
+  </body>
