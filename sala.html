@@ -1,12 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html>
-  <head>
-    <title>Socket.IO chat</title>
-  </head>
+
   <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" placeholder="Escreva uma mensagem"/><button>Send</button>
+    <form action = "/sala" method = "GET">
+      Your nickname: <!-- nickname -->
+      <button>Send</button>
+
     </form>
+
+    <ul id="messages"></ul>
+
+    <form action="">
+      <input id="message" autocomplete="off" placeholder="Escreva uma mensagem"/>
+      <button>Send</button>
+    </form>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    
+    <script>
+
+      var socket = io();
+
+      $('form').submit(function(){
+        socket.emit('chat message', $('#message').val());
+        $('#message' ).val('');
+        return false;
+      });
+
+      socket.on('chat message', function(msg){
+        $('#messages').append($('<li>').text(msg));
+        // Adiciona mensagem + nickname da pessoa
+      });
+
+    </script>
+
   </body>
 
+</html>

@@ -1,12 +1,10 @@
 <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
   </head>
   <body>
-    <ul id="nickname"></ul>
-    <form action="/sala">
-      <input id="nn" autocomplete="off" placeholder="Escolha um Nickname"/>
-      <button>Send</button>
-    </form>
+      <form action = "/sala" method = "POST">
+         Nickname: <input type = "text" name = "nickname"> <br>
+         <input type = "submit" value = "Submit">
+      </form>
   </body>
