@@ -10,7 +10,6 @@
 		}
 	</style>
 <body>
-	<div>
 		<div id="userFormArea">
 			<form id="userForm">
 				<label>Enter a Username</label>
@@ -18,7 +17,8 @@
 				<br/>
 				<input type="submit" value= "Login"/>
 			</form>
-		</div>	
+		</div>
+
 		<div id="messageArea">
 			<div>
 				<h4>Online Users</h4>
@@ -32,7 +32,6 @@
 						<input type="submit" value= "Send Message"/>
 				</form>	
 		</div>
-	</div>
 	<script>
 		$(function(){
 			var socket = io.connect();
@@ -52,7 +51,7 @@
 			});
 
 			socket.on('new message', function(data){
-				$chat.append('<li>'+data.msg+'</li>')
+				$chat.append('<li><strong>'+data.user+'</strong>:'+data.msg+'</li>')
 			});
 
 			$userForm.submit(function(e){
@@ -68,10 +67,10 @@
 
 			socket.on('get users', function(data){
 				var u = '';
-				for(i=0; i<data.lenght; i++){
-					u += '<li>'+data[i]+'</li>'
+				for(i=0; i<data.length; i++){
+					u += '<li class= "list-group-item">'+data[i]+'</li>'
 				}
-				$user.u(u);
+				$users.html(u);
 			});
 
 		});
