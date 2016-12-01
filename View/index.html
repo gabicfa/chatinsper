@@ -18,7 +18,7 @@
 	<style>
 
 	body{
-		margin-top:50px;
+		margin-top:30px;
 	}
 
 	#messageArea{
@@ -118,6 +118,16 @@
 			var $users = $('#users');
 			var $username = $('#username')
 
+			$messageForm.submit(function(e){
+				e.preventDefault();
+				socket.emit('send message', $message.val());
+				$message.val('');
+			});
+
+			socket.on('new message', function(data){
+				$chat.append('<ul class="list-group-item list-group-item-info"><strong>'+data.user+'</strong>: '+data.msg+'</ul> </br>')
+			});
+
 			$userForm.submit(function(e){
 				e.preventDefault();
 				socket.emit('new user', $username.val(), function(data){
@@ -135,16 +145,6 @@
 					u += '<li class= "list-group-item">'+data[j]+'</li>'
 				}
 				$users.html(u);
-			});
-
-			$messageForm.submit(function(e){
-				e.preventDefault();
-				socket.emit('send message', $message.val());
-				$message.val('');
-			});
-
-			socket.on('new message', function(data){
-				$chat.append('<ul class="list-group-item"><strong>'+data.user+'</strong>: '+data.msg+'</ul> </br>')
 			});
 
 		});
