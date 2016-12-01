@@ -5,6 +5,7 @@
 	<script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
+	<div id="chat"></div>
 	<form id="messageForm">
 			<label>Enter Message</label>
 			<textarea id= "message" ></textarea>
@@ -21,7 +22,12 @@
 
 			$messageForm.submit(function(e){
 				e.preventDefault();
-				console.log("mensagem enviada");
+				socket.emit('send message', $message.val());
+				message.val('');
+			});
+
+			socket.on('new message', function(data){
+				$chat.append('<li>'+data.msg+'</li>')
 			});
 		});
 	</script>	
