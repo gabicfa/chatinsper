@@ -15,8 +15,14 @@ app.get('/', function(req,res){
 
 io.sockets.on('connection', function(socket){
 	connections.push(socket);
-	console.log('Conectados: %s sockets conectados', connections.length);
+	console.log('Conneted: %s sockets Conneted', connections.length);
 
-	connections.splice(cpnections.indexOf(socket),1);
-	console.log('Disconnecte:%s sockets connected', connections.length);	
+	socket.on('disconnect', function(data){
+		connections.splice(connections.indexOf(socket),1);
+		console.log('Disconnecte:%s sockets connected', connections.length);	
+	});
+
+	socket.on('send message', function(data){
+		io.sockets.emit('new message',{msg:data});
+	});
 });
