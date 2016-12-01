@@ -1,8 +1,16 @@
 <html>
 <head>
 	<title>ChatInsper</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-Test
+	<form id="messageForm">
+			<label>Enter Message</label>
+			<textarea id= "message" ></textarea>
+			<br/>
+			<input type="submit" value= "Send Message"/>
+	</form>	
 </body>
 </html>
+
